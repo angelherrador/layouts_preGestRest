@@ -9,18 +9,16 @@ class DishesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.purple,
-          title: Text('$label'),
+          backgroundColor: Colors.blueAccent,
+          title: Text(label),
           centerTitle: true,
         ),
         body: SingleChildScrollView(
-            child: Column(
-              children: [
-                Text('Familia : $label'),
-              ],
-            ),
-        )
-
-    );
+          child: Column(
+            children: [
+              Text('Familia : $label'),
+            ],
+          ),
+        ));
   }
 }

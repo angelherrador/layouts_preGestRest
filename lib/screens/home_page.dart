@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 import 'dishes_page.dart';
 
 class HomePage extends StatelessWidget {
@@ -85,17 +85,13 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.amber,
       appBar: AppBar(
-        title: const Text('Familias'),
+        title: const Text('Favoritos / Familias'),
       ),
       body: Column(
         children: [
-          const SizedBox(
-            height: 20,
-          ),
+          const SizedBox(height: 20,),
           listFavorites,
-          const SizedBox(
-            height: 20,
-          ),
+          const SizedBox(height: 20,),
           Expanded(
             flex: 4,
             child: GridView.builder(
@@ -187,7 +183,9 @@ Builder _buildFavorites(String label, String favoriteImage) {
             ),
           ]),
       child: InkWell(
-        onTap: () {
+        onTap: () async {
+          final SharedPreferences prefs = await SharedPreferences.getInstance();
+          await prefs.setBool('showHome', false);
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => DishesPage(label)));
         },

@@ -3,11 +3,6 @@ import 'package:layaouts/screens/home_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-Future main() async{
-  WidgetsFlutterBinding.ensureInitialized();
-  final SharedPreferences prefs = await SharedPreferences.getInstance();
-  final bool? showHome = prefs.getBool('showHome');
-}
 class OnBoardingPage extends StatefulWidget {
   const OnBoardingPage({super.key});
 
@@ -18,6 +13,7 @@ class OnBoardingPage extends StatefulWidget {
 class _OnBoardingPageState extends State<OnBoardingPage> {
 
   final controller = PageController();
+
   @override
   void dispose(){
     controller.dispose();
@@ -40,7 +36,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
               children: [
                 Container(
                   color: Colors.red,
-                  child: const Center(child: Text('Page 1',style: TextStyle(fontSize: 40, color: Colors.white))),
+                  child: Center(child: Text('Page 1',style: TextStyle(fontSize: 40, color: Colors.white))),
                 ),
                 Container(
                   color: Colors.indigo,
@@ -66,7 +62,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                 //https://youtu.be/AmsXazhGMQ0?t=201
                 
                 Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (context) => HomePage()));
+                    MaterialPageRoute(builder: (context) => const HomePage()));
               },
               child: const Text('Get Started', style: TextStyle(fontSize: 24),)
             ) :

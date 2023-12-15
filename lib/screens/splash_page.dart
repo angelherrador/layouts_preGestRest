@@ -4,17 +4,26 @@ import 'package:layaouts/screens/home_page.dart';
 import 'package:layaouts/screens/onboarding_page.dart';
 import 'package:lottie/lottie.dart';
 import 'package:page_transition/page_transition.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
+
+// Future main() async{
+//   WidgetsFlutterBinding.ensureInitialized();
+//   final SharedPreferences prefs = await SharedPreferences.getInstance();
+//   final bool? showHome = prefs.getBool('showHome');
+//   runApp(SplashScreen(showHome: showHome!,));
+// }
 
 class SplashScreen extends StatelessWidget {
-  const SplashScreen({super.key});
+  final bool showHome;
+  const SplashScreen({super.key, required this.showHome});
 
   @override
   Widget build(BuildContext context) {
     return AnimatedSplashScreen(
         splash: Lottie.asset('assets/NikeSplashScreen.json'),
         splashIconSize: 250,
-        backgroundColor: Colors.black,
+        backgroundColor: showHome ? Colors.black: Colors.green,
         pageTransitionType: PageTransitionType.fade,
-        nextScreen: OnBoardingPage());
+        nextScreen: showHome ? const HomePage() : const OnBoardingPage());
   }
 }

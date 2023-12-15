@@ -5,8 +5,8 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 Future main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  final prefs = await SharedPreferences.getInstance();
-  final showHome = prefs.getBool('showHome') ?? false;
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
+  final bool? showHome = prefs.getBool('showHome');
 }
 class OnBoardingPage extends StatefulWidget {
   const OnBoardingPage({super.key});
@@ -61,8 +61,8 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                 minimumSize: const Size.fromHeight(80),
               ),
               onPressed: () async{
-                // final prefs = await SharedPreferences.getInstance();
-                // prefs.setBool('showHome', true);
+                final SharedPreferences prefs = await SharedPreferences.getInstance();
+                await prefs.setBool('showHome', true);
                 //https://youtu.be/AmsXazhGMQ0?t=201
                 
                 Navigator.of(context).pushReplacement(

@@ -17,11 +17,11 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
   @override
   void dispose(){
     controller.dispose();
-
     super.dispose();
   }
 
   bool isLastPage = false;
+  int pageNumber = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -31,20 +31,25 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
           child: PageView(
               controller: controller,
               onPageChanged: (index) {
-                setState(() => isLastPage = index == 2);
+                setState(() => isLastPage = index == 3);
+                pageNumber = index;
               },
               children: [
                 Container(
                   color: Colors.red,
-                  child: Center(child: Text('Page 1',style: TextStyle(fontSize: 40, color: Colors.white))),
+                  child: Center(child: Text('Page $pageNumber',style: TextStyle(fontSize: 40, color: Colors.white))),
                 ),
                 Container(
                   color: Colors.indigo,
-                  child: const Center(child: Text('Page 2',style: TextStyle(fontSize: 40, color: Colors.white))),
+                  child: Center(child: Text('Page $pageNumber',style: TextStyle(fontSize: 40, color: Colors.white))),
                 ),
                 Container(
                   color: Colors.green,
-                  child: const Center(child: Text('Page 3',style: TextStyle(fontSize: 40, color: Colors.white))),
+                  child: Center(child: Text('Page $pageNumber',style: TextStyle(fontSize: 40, color: Colors.white))),
+                ),
+                Container(
+                  color: Colors.orange,
+                  child: Center(child: Text('Page $pageNumber',style: TextStyle(fontSize: 40, color: Colors.white))),
                 ),
               ]
           ),
@@ -73,27 +78,32 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   TextButton(
-                      onPressed: () => controller.jumpToPage(2),
+                      onPressed: () => controller.jumpToPage(3),
                       child: const Text('Skip',style: TextStyle(fontSize: 20),)),
                   Center(
                     child: SmoothPageIndicator(
                       controller: controller,
-                      count: 3,
+                      count: 4,
                       effect: const WormEffect(
                         spacing: 16,
                         dotColor: Colors.black87,
                         activeDotColor: Colors.indigo,
                       ),
-                      onDotClicked: (index) => controller.animateToPage(
+                      onDotClicked: (index) {
+                        pageNumber = index+1;
+                        controller.animateToPage(
                         index,
-                        duration: const Duration(milliseconds: 500) ,
-                        curve: Curves.easeInOut),
+                        duration: const Duration
+                        (milliseconds: 500) ,
+                        curve: Curves.easeInOut);},
                     ),
                   ),
                   TextButton(
-                      onPressed: () => controller.nextPage(
+                      onPressed: () {
+                          pageNumber++;
+                          controller.nextPage(
                           duration: const Duration(milliseconds: 500) ,
-                          curve: Curves.easeInOut),
+                          curve: Curves.easeInOut);},
                       child: const Text('Next',style: TextStyle(fontSize: 20),)),
                 ],
               ),

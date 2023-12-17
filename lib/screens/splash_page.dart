@@ -4,14 +4,6 @@ import 'package:layaouts/screens/home_page.dart';
 import 'package:layaouts/screens/onboarding_page.dart';
 import 'package:lottie/lottie.dart';
 import 'package:page_transition/page_transition.dart';
-// import 'package:shared_preferences/shared_preferences.dart';
-
-// Future main() async{
-//   WidgetsFlutterBinding.ensureInitialized();
-//   final SharedPreferences prefs = await SharedPreferences.getInstance();
-//   final bool? showHome = prefs.getBool('showHome');
-//   runApp(SplashScreen(showHome: showHome!,));
-// }
 
 class SplashScreen extends StatelessWidget {
   final bool showHome;

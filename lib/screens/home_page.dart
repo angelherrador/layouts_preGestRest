@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:layaouts/screens/onboarding_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dishes_page.dart';
 
@@ -86,6 +87,18 @@ class HomePage extends StatelessWidget {
       backgroundColor: Colors.amber,
       appBar: AppBar(
         title: const Text('Favoritos / Familias'),
+        actions: [
+          IconButton(
+            onPressed: () async {
+            final SharedPreferences prefs = await SharedPreferences.getInstance();
+            await prefs.setBool('showHome', false);
+
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (context) => const OnBoardingPage()),
+            );
+          },
+            icon: const Icon(Icons.logout),)
+        ],
       ),
       body: Column(
         children: [
@@ -183,9 +196,7 @@ Builder _buildFavorites(String label, String favoriteImage) {
             ),
           ]),
       child: InkWell(
-        onTap: () async {
-          final SharedPreferences prefs = await SharedPreferences.getInstance();
-          await prefs.setBool('showHome', false);
+        onTap: ()  {
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => DishesPage(label)));
         },

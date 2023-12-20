@@ -37,19 +37,19 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
               children: [
                 Container(
                   color: Colors.red,
-                  child: Center(child: Text('Page $pageNumber',style: TextStyle(fontSize: 40, color: Colors.white))),
+                  child: Center(child: Text('Page $pageNumber',style: const TextStyle(fontSize: 40, color: Colors.white))),
                 ),
                 Container(
                   color: Colors.indigo,
-                  child: Center(child: Text('Page $pageNumber',style: TextStyle(fontSize: 40, color: Colors.white))),
+                  child: Center(child: Text('Page $pageNumber',style: const TextStyle(fontSize: 40, color: Colors.white))),
                 ),
                 Container(
                   color: Colors.green,
-                  child: Center(child: Text('Page $pageNumber',style: TextStyle(fontSize: 40, color: Colors.white))),
+                  child: Center(child: Text('Page $pageNumber',style: const TextStyle(fontSize: 40, color: Colors.white))),
                 ),
                 Container(
                   color: Colors.orange,
-                  child: Center(child: Text('Page $pageNumber',style: TextStyle(fontSize: 40, color: Colors.white))),
+                  child: Center(child: Text('Page $pageNumber',style: const TextStyle(fontSize: 40, color: Colors.white))),
                 ),
               ]
           ),
